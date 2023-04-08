@@ -276,12 +276,12 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       let currentWind;
       if(currentWeather) {
         currentCode=currentWeather.code || -1;
-        currentTemp=locale.temp(currentWeather.temp-273.15).match(/^(\D*\d)(.*)$/);
-        currentWind=locale.speed(currentWeather.wind).match(/^(\D*\d)(.*)$/);
+        currentWind=(currentWeather.wind/1.60934).toFixed(0);
+        currentTemp=(currentWeather.temp-273.15).toFixed(0);
       } else {
         currentCode=-1;
-        currentTemp=[-1,-1];
-        currentWind=[-1,-1];
+        currentTemp=-1;
+        currentWind=-1;
       }
       //let tomorrowWeather={"code":500,"temp":"49F","wind":"2MPH"};
       //const tomorrowTemp=locale.temp(tomorrowWeather.temp-273.15).match(/^(\D*\d)(.*)$/);
@@ -292,8 +292,8 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       g.setFontAlign(0, -1);
       //g.drawString("53°F", w3, 45);
       //g.drawString("4MPH", w3, 64);
-      g.drawString(currentTemp[1] + "°F", w3, 45);
-      g.drawString(currentWind[1] + "MPH", w3, 64);
+      g.drawString(currentTemp + "°F", w3, 45);
+      g.drawString(currentWind + "MPH", w3, 64);
   
       g.drawImage(chooseIconByCode(800), w2 + (ws - 49)/2, h/2, { scale: 1 });
       setTextColor();
