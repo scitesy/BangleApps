@@ -209,9 +209,6 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       case 2:
         drawSideBar3();
         break;
-      case 3:
-        drawSideBar4();
-        break;
       }
   
       drawCount++;
@@ -224,51 +221,6 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       let dd=date.getDate();
       let mm=require("date_utils").month(date.getMonth()+1,1).toUpperCase();
   
-
-      drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
-  
-      setTextColor();
-      g.setFont('Vector', 20);
-      g.setFontAlign(0, -1);
-      g.drawString(E.getBattery() + '%', w3,  (h/10) + 17 + 7);
-  
-      drawDateAndCalendar(w3, h/2, dy, dd, mm);
-    }
-  
-    let drawSideBar2=function() {
-      drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
-  
-      setTextColor();
-      g.setFont('Vector', 20);
-      g.setFontAlign(0, -1);
-      g.drawString(E.getBattery() + '%', w3,  (h/10) + 17 + 7);
-  
-      // steps
-      g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
-      setSmallFont();
-      g.setFontAlign(0, -1);
-      g.drawString(formatSteps(), w3, 7*h/8);
-    }
-  
-    // sunrise, sunset times
-    let drawSideBar3=function() {
-      g.setColor('#fff'); // sunrise white
-      g.drawImage(sunrise_img, w2 + (ws - 64)/2, 0, { scale: 1 });
-      setTextColor();
-      setSmallFont();
-      g.setFontAlign(0, -1);
-      g.drawString(sunRise, w3, 64);
-  
-      g.setColor('#000'); // sunset black
-      g.drawImage(sunset_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
-      setTextColor();
-      setSmallFont();
-      g.setFontAlign(0, -1);
-      g.drawString(sunSet, w3, (h/2) + 64);
-    }
-  
-    // current weather/temp
-    let drawSideBar4=function() {
       let currentWeather=weather.get();
       let currentCode;
       let currentTemp;
@@ -288,13 +240,52 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       g.setFontAlign(0, -1);
       g.drawString(currentTemp + "°F", w3, 45);
       g.drawString(currentWind + "MPH", w3, 64);
+
+      drawDateAndCalendar(w3, h/2, dy, dd, mm);
+    }
+  
+    let drawSideBar2=function() {
+      drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
+  
+      setTextColor();
+      g.setFont('Vector', 20);
+      g.setFontAlign(0, -1);
+      g.drawString(E.getBattery() + '%', w3,  (h/10) + 17 + 7);
+  
+      // steps
+      g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
+      setSmallFont();
+      g.setFontAlign(0, -1);
+      g.drawString(formatSteps(), w3, 7*h/8);
+    }
+  
+    let drawSideBar3=function() {
+      let currentWeather=weather.get();
+      let currentCode;
+      let currentTemp;
+      let currentWind;
+      if(currentWeather) {
+        currentCode=currentWeather.code || -1;
+        currentTemp=(currentWeather.temp-273.15).toFixed(0);
+        currentWind=(currentWeather.wind/1.60934).toFixed(0);
+      } else {
+        currentCode=-1;
+        currentTemp=-1;
+        currentWind=-1;
+      }
+      g.drawImage(getErr, w2 + (ws - 49)/2, 0, { scale: 1 });
+      setTextColor();
+      setSmallFont();
+      g.setFontAlign(0, -1);
+      g.drawString("0°F", w3, 45);
+      g.drawString("0MPH", w3, 64);
   
       g.drawImage(getErr, w2 + (ws - 49)/2, h/2, { scale: 1 });
       setTextColor();
       setSmallFont();
       g.setFontAlign(0, -1);
-      g.drawString("70°F", w3, (h/2) + 45);
-      g.drawString("2MPH", w3, (h/2) + 64);
+      g.drawString("0°F", w3, (h/2) + 45);
+      g.drawString("0MPH", w3, (h/2) + 64);
     }
   
     let drawDateAndCalendar=function(x,y,dy,dd,mm) {
@@ -364,12 +355,12 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
     }
   
     let nextSidebar=function() {
-      if (++sideBar > 3) sideBar = 0;
+      if (++sideBar > 2) sideBar = 0;
       log_debug("next: " + sideBar);
     }
   
     let prevSidebar=function() {
-      if (--sideBar < 0) sideBar = 3;
+      if (--sideBar < 0) sideBar = 2;
       log_debug("prev: " + sideBar);
     }
   
@@ -401,9 +392,6 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
           break;
         case 1:
           drawSideBar2();
-          break;
-        case 2:
-          drawSideBar3();
           break;
       }
     }
