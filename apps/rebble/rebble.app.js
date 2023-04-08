@@ -267,42 +267,34 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       g.drawString(sunSet, w3, (h/2) + 64);
     }
   
-    // current weather/temp, tomorrow weather/temp
+    // current weather/temp
     let drawSideBar4=function() {
       let currentWeather=weather.get();
-      //let currentWeather={"code":200,"temp":"80F","wind":"4MPH"};
       let currentCode;
       let currentTemp;
       let currentWind;
       if(currentWeather) {
         currentCode=currentWeather.code || -1;
-        currentWind=(currentWeather.wind/1.60934).toFixed(0);
         currentTemp=(currentWeather.temp-273.15).toFixed(0);
+        currentWind=(currentWeather.wind/1.60934).toFixed(0);
       } else {
         currentCode=-1;
         currentTemp=-1;
         currentWind=-1;
       }
-      //let tomorrowWeather={"code":500,"temp":"49F","wind":"2MPH"};
-      //const tomorrowTemp=locale.temp(tomorrowWeather.temp-273.15).match(/^(\D*\d)(.*)$/);
-      //const tomorrowWind=locale.speed(tomorrowWeather.wind).match(/^(\D*\d)(.*)$/);
       g.drawImage(chooseIconByCode(currentCode), w2 + (ws - 49)/2, 0, { scale: 1 });
       setTextColor();
       setSmallFont();
       g.setFontAlign(0, -1);
-      //g.drawString("53°F", w3, 45);
-      //g.drawString("4MPH", w3, 64);
       g.drawString(currentTemp + "°F", w3, 45);
       g.drawString(currentWind + "MPH", w3, 64);
   
-      g.drawImage(chooseIconByCode(800), w2 + (ws - 49)/2, h/2, { scale: 1 });
+      g.drawImage(getErr, w2 + (ws - 49)/2, h/2, { scale: 1 });
       setTextColor();
       setSmallFont();
       g.setFontAlign(0, -1);
       g.drawString("70°F", w3, (h/2) + 45);
       g.drawString("2MPH", w3, (h/2) + 64);
-      //g.drawString(tomorrowTemp[1] + "°F", w3, (h/2) + 45);
-      //g.drawString(tomorrowWind[1] + "MPH", w3, (h/2) + 64);
     }
   
     let drawDateAndCalendar=function(x,y,dy,dd,mm) {
