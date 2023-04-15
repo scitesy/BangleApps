@@ -229,17 +229,15 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         currentCode=currentWeather.code || -1;
         currentTemp=(currentWeather.temp-273.15).toFixed(0);
         currentWind=(currentWeather.wind/1.60934).toFixed(0);
+        g.drawImage(chooseIconByCode(currentCode), w2 + (ws - 49)/2, 0, { scale: 1 });
+        setTextColor();
+        setSmallFont();
+        g.setFontAlign(0, -1);
+        g.drawString(currentTemp + "°F", w3, 45);
+        g.drawString(currentWind + "MPH", w3, 64);
       } else {
-        currentCode=-1;
-        currentTemp=-1;
-        currentWind=-1;
+        g.drawImage(getErr, w2 + (ws - 49)/2, 0, { scale: 1 });
       }
-      g.drawImage(chooseIconByCode(currentCode), w2 + (ws - 49)/2, 0, { scale: 1 });
-      setTextColor();
-      setSmallFont();
-      g.setFontAlign(0, -1);
-      g.drawString(currentTemp + "°F", w3, 45);
-      g.drawString(currentWind + "MPH", w3, 64);
 
       drawDateAndCalendar(w3, h/2, dy, dd, mm);
     }
@@ -260,6 +258,7 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
     }
   
     let drawSideBar3=function() {
+      /*
       let currentWeather=weather.get();
       let currentCode;
       let currentTemp;
@@ -273,6 +272,7 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         currentTemp=-1;
         currentWind=-1;
       }
+      */
       g.drawImage(getErr, w2 + (ws - 49)/2, 0, { scale: 1 });
       setTextColor();
       setSmallFont();
