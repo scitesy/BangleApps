@@ -227,6 +227,11 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       let currentWind;
       if(currentWeather) {
         currentCode=currentWeather.code || -1;
+        if (currentWeather.temp.includes("C")) {
+          currentTemp=currentWeather.temp;
+        } else {
+          currentTemp=(currentWeather.temp-273.15).toFixed(0);
+        }
         currentTemp=(currentWeather.temp-273.15).toFixed(0);
         currentWind=(currentWeather.wind/1.60934).toFixed(0);
         g.drawImage(chooseIconByCode(currentCode), w2 + (ws - 49)/2, 0, { scale: 1 });
@@ -255,37 +260,6 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       setSmallFont();
       g.setFontAlign(0, -1);
       g.drawString(formatSteps(), w3, 7*h/8);
-    }
-  
-    let drawSideBar3=function() {
-      /*
-      let currentWeather=weather.get();
-      let currentCode;
-      let currentTemp;
-      let currentWind;
-      if(currentWeather) {
-        currentCode=currentWeather.code || -1;
-        currentTemp=(currentWeather.temp-273.15).toFixed(0);
-        currentWind=(currentWeather.wind/1.60934).toFixed(0);
-      } else {
-        currentCode=-1;
-        currentTemp=-1;
-        currentWind=-1;
-      }
-      */
-      g.drawImage(getErr, w2 + (ws - 49)/2, 0, { scale: 1 });
-      setTextColor();
-      setSmallFont();
-      g.setFontAlign(0, -1);
-      g.drawString("0°F", w3, 45);
-      g.drawString("0MPH", w3, 64);
-  
-      g.drawImage(getErr, w2 + (ws - 49)/2, h/2, { scale: 1 });
-      setTextColor();
-      setSmallFont();
-      g.setFontAlign(0, -1);
-      g.drawString("0°F", w3, (h/2) + 45);
-      g.drawString("0MPH", w3, (h/2) + 64);
     }
   
     let drawDateAndCalendar=function(x,y,dy,dd,mm) {
@@ -355,12 +329,12 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
     }
   
     let nextSidebar=function() {
-      if (++sideBar > 2) sideBar = 0;
+      if (++sideBar > 1) sideBar = 0;
       log_debug("next: " + sideBar);
     }
   
     let prevSidebar=function() {
-      if (--sideBar < 0) sideBar = 2;
+      if (--sideBar < 0) sideBar = 1;
       log_debug("prev: " + sideBar);
     }
   
