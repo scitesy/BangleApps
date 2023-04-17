@@ -206,9 +206,6 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       case 1:
         drawSideBar2();
         break;
-      case 2:
-        drawSideBar3();
-        break;
       }
   
       drawCount++;
@@ -363,6 +360,9 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       switch(sideBar) {
         case 0:
           drawSideBar1();
+          break;
+        case 1:
+          drawSideBar2();
           break;
       }
     }
