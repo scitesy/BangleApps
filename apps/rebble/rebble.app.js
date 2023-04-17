@@ -364,9 +364,6 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         case 0:
           drawSideBar1();
           break;
-        case 1:
-          drawSideBar2();
-          break;
       }
     }
   
