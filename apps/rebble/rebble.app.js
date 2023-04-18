@@ -236,7 +236,7 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         setTextColor();
         setSmallFont();
         g.setFontAlign(0, -1);
-        g.drawString(currentTemp + "", w3, 45);
+        g.drawString(currentTemp, w3, 45);
         g.drawString(currentWind + "MPH", w3, 64);
       } else {
         g.drawImage(getErr, w2 + (ws - 49)/2, 0, { scale: 1 });
