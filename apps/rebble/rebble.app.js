@@ -224,18 +224,19 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       let currentWind;
       if(currentWeather) {
         currentCode=currentWeather.code || -1;
-        if (currentWeather.temp.includes("C")) {
-          currentTemp=currentWeather.temp;
-        } else {
-          currentTemp=(currentWeather.temp-273.15).toFixed(0);
-        }
-        currentTemp=(currentWeather.temp-273.15).toFixed(0);
+        //if (currentWeather.temp.includes("C")) {
+        //  currentTemp=currentWeather.temp;
+        //} else {
+        //  currentTemp=(currentWeather.temp-273.15).toFixed(0);
+        //}
+        //currentTemp=(currentWeather.temp-273.15).toFixed(0);
+        currentTemp=currentWeather.temp;
         currentWind=(currentWeather.wind/1.60934).toFixed(0);
         g.drawImage(chooseIconByCode(currentCode), w2 + (ws - 49)/2, 0, { scale: 1 });
         setTextColor();
         setSmallFont();
         g.setFontAlign(0, -1);
-        g.drawString(currentTemp + "°F", w3, 45);
+        g.drawString(currentTemp + "", w3, 45);
         g.drawString(currentWind + "MPH", w3, 64);
       } else {
         g.drawImage(getErr, w2 + (ws - 49)/2, 0, { scale: 1 });
