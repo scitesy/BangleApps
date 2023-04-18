@@ -226,7 +226,7 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         currentCode=currentWeather.code || -1;
         if (currentWeather.id === undefined) {
           let currentTempCelsius=(currentWeather.temp-273.15).toFixed(1);
-          currentTemp=(currentTempCelsius * (9/5) + 32);
+          currentTemp=(currentTempCelsius * (9/5) + 32).toFixed(0);
         } else {
           currentTemp=currentWeather.temp;
         }
