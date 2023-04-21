@@ -238,7 +238,7 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         g.drawString(currentTemp + "°F", w3, 45);
         g.drawString(currentWind + "MPH", w3, 64);
       } else {
-        g.drawImage(getErr, w2 + (ws - 49)/2, 0, { scale: 1 });
+        drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
       }
 
       drawDateAndCalendar(w3, h/2, dy, dd, mm);
@@ -258,6 +258,59 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       g.setFontAlign(0, -1);
       g.drawString(formatSteps(), w3, 7*h/8);
     }
+
+    let drawSideBar3=function() {
+      drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
+  
+      setTextColor();
+      g.setFont('Vector', 20);
+      g.setFontAlign(0, -1);
+      g.drawString(E.getBattery() + '%', w3,  (h/10) + 17 + 7);
+      // heartbeat info
+      /**
+   * `range` is one of:
+   * * `undefined` or `'10min'` - health data so far in this 10 minute block (eg. 9:00.00 - 9:09.59)
+   * * `'last'` - health data during the last 10 minute block
+   * * `'day'` - the health data so far for the day
+   * `getHealthStatus` returns an object containing:
+   * * `movement` is the 32 bit sum of all `acc.diff` readings since power on (and
+   *   rolls over). It is the difference in accelerometer values as `g*8192`
+   * * `steps` is the number of steps during this period
+   * * `bpm` the best BPM reading from HRM sensor during this period
+   * * `bpmConfidence` best BPM confidence (0-100%) during this period
+   *
+   * @param {any} range - What time period to return data for, see below:
+   * @returns {any} Returns an object containing various health info
+   * @url http://www.espruino.com/Reference#l_Bangle_getHealthStatus
+   */
+      g.drawString(Math.round(Bangle.getHealthStatus("last").bpm), 109, 98);
+  
+      g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
+      setSmallFont();
+      g.setFontAlign(0, -1);
+      g.drawString(formatSteps(), w3, 7*h/8);
+    }
+
+    let drawSideBar4=function() {
+      // daily weather forecast info next day, 2nd day,
+      g.drawString(Math.round(Bangle.getHealthStatus("last").bpm), 109, 98);
+  
+      g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
+      setSmallFont();
+      g.setFontAlign(0, -1);
+      g.drawString(formatSteps(), w3, 7*h/8);
+    }
+
+    let drawSideBar5=function() {
+      // hourly weather forecast info next day, 2nd day,
+      g.drawString(Math.round(Bangle.getHealthStatus("last").bpm), 109, 98);
+  
+      g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
+      setSmallFont();
+      g.setFontAlign(0, -1);
+      g.drawString(formatSteps(), w3, 7*h/8);
+    }
+
   
     let drawDateAndCalendar=function(x,y,dy,dd,mm) {
       // day
