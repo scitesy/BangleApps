@@ -206,6 +206,9 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       case 1:
         drawSideBar2();
         break;
+      case 2:
+        drawSideBar3();
+        break;
       }
   
       drawCount++;
@@ -239,6 +242,10 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         g.drawString(currentWind + "MPH", w3, 64);
       } else {
         drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
+        setTextColor();
+        g.setFont('Vector', 20);
+        g.setFontAlign(0, -1);
+        g.drawString(E.getBattery() + '%', w3,  (h/10) + 17 + 7);
       }
 
       drawDateAndCalendar(w3, h/2, dy, dd, mm);
@@ -260,12 +267,39 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
     }
 
     let drawSideBar3=function() {
-      drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
-  
-      setTextColor();
-      g.setFont('Vector', 20);
+      let currentWeather=weather.get();
+      let currentCode;
+      let currentTemp;
+      let currentWind;
+      if(currentWeather) {
+        //currentCode=currentWeather.code || -1;
+        //if (currentWeather.id === undefined) {
+        //  let currentTempCelsius=(currentWeather.temp-273.15).toFixed(1);
+        //  currentTemp=(currentTempCelsius * (9/5) + 32).toFixed(0);
+        //} else {
+        //  currentTemp=currentWeather.temp;
+        //}
+        //currentWind=(currentWeather.wind/1.60934).toFixed(0);
+        //g.drawImage(chooseIconByCode(currentCode), w2 + (ws - 49)/2, 0, { scale: 1 });
+        setTextColor();
+        setSmallFont();
+        g.setFontAlign(0, -1);
+        g.drawString(currentWeather.hourlyforecast[0].wec, w3, 45);
+        g.drawString(currentWeather.hourlyforecast[0].tep, w3, 64);
+      } else {
+        drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
+        setTextColor();
+        g.setFont('Vector', 20);
+        g.setFontAlign(0, -1);
+        g.drawString(currentWeather.dailyforecast[0].wec + '%', w3,  (h/10) + 17 + 7);
+      }
+      g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
+      setSmallFont();
       g.setFontAlign(0, -1);
-      g.drawString(E.getBattery() + '%', w3,  (h/10) + 17 + 7);
+      g.drawString(currentWeather.dailyforecast[0].mat, w3, 7*h/8);
+    }
+
+    let drawSideBar4=function() {
       // heartbeat info
       /**
    * `range` is one of:
@@ -283,15 +317,6 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
    * @returns {any} Returns an object containing various health info
    * @url http://www.espruino.com/Reference#l_Bangle_getHealthStatus
    */
-      g.drawString(Math.round(Bangle.getHealthStatus("last").bpm), 109, 98);
-  
-      g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
-      setSmallFont();
-      g.setFontAlign(0, -1);
-      g.drawString(formatSteps(), w3, 7*h/8);
-    }
-
-    let drawSideBar4=function() {
       // daily weather forecast info next day, 2nd day,
       g.drawString(Math.round(Bangle.getHealthStatus("last").bpm), 109, 98);
   
@@ -379,12 +404,12 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
     }
   
     let nextSidebar=function() {
-      if (++sideBar > 1) sideBar = 0;
+      if (++sideBar > 2) sideBar = 0;
       log_debug("next: " + sideBar);
     }
   
     let prevSidebar=function() {
-      if (--sideBar < 0) sideBar = 1;
+      if (--sideBar < 0) sideBar = 2;
       log_debug("prev: " + sideBar);
     }
   
@@ -416,6 +441,9 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
           break;
         case 1:
           drawSideBar2();
+          break;
+        case 2:
+          drawSideBar3();
           break;
       }
     }
