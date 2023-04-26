@@ -284,8 +284,16 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         setTextColor();
         setSmallFont();
         g.setFontAlign(0, -1);
-        g.drawString(currentWeather.hourlyforecast[0].wec, w3, 45);
-        g.drawString(currentWeather.hourlyforecast[0].tep, w3, 64);
+        g.drawString(currentWeather.hourlyforecast[0].tep, w3, 7);
+        g.drawString(currentWeather.hourlyforecast[1].tep, w3, 26);
+        g.drawString(currentWeather.hourlyforecast[2].tep, w3, 45);
+        g.drawString(currentWeather.hourlyforecast[3].tep, w3, 64);
+        g.drawString(currentWeather.hourlyforecast[4].tep, w3, 83);
+        g.drawString(currentWeather.hourlyforecast[5].tep, w3, 102);
+        g.drawString(currentWeather.hourlyforecast[6].tep, w3, 121);
+        g.drawString(currentWeather.hourlyforecast[7].tep, w3, 140);
+        g.drawString(currentWeather.hourlyforecast[8].tep, w3, 159);
+        g.drawString(currentWeather.hourlyforecast[9].tep, w3, 178);
       } else {
         drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
         setTextColor();
@@ -293,10 +301,10 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         g.setFontAlign(0, -1);
         g.drawString(currentWeather.dailyforecast[0].wec + '%', w3,  (h/10) + 17 + 7);
       }
-      g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
-      setSmallFont();
-      g.setFontAlign(0, -1);
-      g.drawString(currentWeather.dailyforecast[0].mat, w3, 7*h/8);
+      //g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
+      //setSmallFont();
+      //g.setFontAlign(0, -1);
+      //g.drawString(currentWeather.dailyforecast[0].mat, w3, 7*h/8);
     }
 
     let drawSideBar4=function() {
