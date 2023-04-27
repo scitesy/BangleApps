@@ -268,32 +268,19 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
 
     let drawSideBar3=function() {
       let currentWeather=weather.get();
-      let currentCode;
-      let currentTemp;
-      let currentWind;
       if(currentWeather) {
-        //currentCode=currentWeather.code || -1;
-        //if (currentWeather.id === undefined) {
-        //  let currentTempCelsius=(currentWeather.temp-273.15).toFixed(1);
-        //  currentTemp=(currentTempCelsius * (9/5) + 32).toFixed(0);
-        //} else {
-        //  currentTemp=currentWeather.temp;
-        //}
-        //currentWind=(currentWeather.wind/1.60934).toFixed(0);
-        //g.drawImage(chooseIconByCode(currentCode), w2 + (ws - 49)/2, 0, { scale: 1 });
         setTextColor();
         setSmallFont();
         g.setFontAlign(0, -1);
-        // round to zero and pipe feels like rounded
         g.drawString((currentWeather.hourlyforecast[0].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[0].fel.toFixed(0)), w3, 7);
-        g.drawString(currentWeather.hourlyforecast[1].tep, w3, 26);
-        g.drawString(currentWeather.hourlyforecast[2].tep, w3, 45);
-        g.drawString(currentWeather.hourlyforecast[3].tep, w3, 64);
-        g.drawString(currentWeather.hourlyforecast[4].tep, w3, 83);
-        g.drawString(currentWeather.hourlyforecast[5].tep, w3, 102);
-        g.drawString(currentWeather.hourlyforecast[6].tep, w3, 121);
-        g.drawString(currentWeather.hourlyforecast[7].tep, w3, 140);
-        g.drawString(currentWeather.hourlyforecast[8].tep, w3, 159);
+        g.drawString((currentWeather.hourlyforecast[1].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[1].fel.toFixed(0)), w3, 26);
+        g.drawString((currentWeather.hourlyforecast[2].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[2].fel.toFixed(0)), w3, 45);
+        g.drawString((currentWeather.hourlyforecast[3].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[3].fel.toFixed(0)), w3, 64);
+        g.drawString((currentWeather.hourlyforecast[4].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[4].fel.toFixed(0)), w3, 83);
+        g.drawString((currentWeather.hourlyforecast[5].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[5].fel.toFixed(0)), w3, 102);
+        g.drawString((currentWeather.hourlyforecast[6].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[6].fel.toFixed(0)), w3, 121);
+        g.drawString((currentWeather.hourlyforecast[7].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[7].fel.toFixed(0)), w3, 140);
+        g.drawString((currentWeather.hourlyforecast[8].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[8].fel.toFixed(0)), w3, 159);
       } else {
         drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
         setTextColor();
@@ -301,10 +288,6 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         g.setFontAlign(0, -1);
         g.drawString(currentWeather.dailyforecast[0].wec + '%', w3,  (h/10) + 17 + 7);
       }
-      //g.drawImage(boot_img, w2 + (ws - 64)/2, h/2, { scale: 1 });
-      //setSmallFont();
-      //g.setFontAlign(0, -1);
-      //g.drawString(currentWeather.dailyforecast[0].mat, w3, 7*h/8);
     }
 
     let drawSideBar4=function() {
