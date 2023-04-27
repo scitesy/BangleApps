@@ -284,7 +284,8 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         setTextColor();
         setSmallFont();
         g.setFontAlign(0, -1);
-        g.drawString(currentWeather.hourlyforecast[0].tep, w3, 7);
+        // round to zero and pipe feels like rounded
+        g.drawString((currentWeather.hourlyforecast[0].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[0].fel.toFixed(0)), w3, 7);
         g.drawString(currentWeather.hourlyforecast[1].tep, w3, 26);
         g.drawString(currentWeather.hourlyforecast[2].tep, w3, 45);
         g.drawString(currentWeather.hourlyforecast[3].tep, w3, 64);
@@ -293,7 +294,6 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         g.drawString(currentWeather.hourlyforecast[6].tep, w3, 121);
         g.drawString(currentWeather.hourlyforecast[7].tep, w3, 140);
         g.drawString(currentWeather.hourlyforecast[8].tep, w3, 159);
-        g.drawString(currentWeather.hourlyforecast[9].tep, w3, 178);
       } else {
         drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
         setTextColor();
