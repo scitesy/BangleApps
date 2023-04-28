@@ -272,7 +272,8 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         setTextColor();
         setSmallFont();
         g.setFontAlign(0, -1);
-        g.drawString((currentWeather.hourlyforecast[0].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[0].fel.toFixed(0)), w3, 7);
+        g.drawImage(chooseIconByCode(currentWeather.hourlyforecast[0].wec), w2 + (ws - 20)/2, 7, { scale: .4 });
+        g.drawString((currentWeather.hourlyforecast[0].tep.toFixed(0) + " " + currentWeather.hourlyforecast[0].fel.toFixed(0)), w3, 7);
         g.drawString((currentWeather.hourlyforecast[1].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[1].fel.toFixed(0)), w3, 26);
         g.drawString((currentWeather.hourlyforecast[2].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[2].fel.toFixed(0)), w3, 45);
         g.drawString((currentWeather.hourlyforecast[3].tep.toFixed(0) + "|" + currentWeather.hourlyforecast[3].fel.toFixed(0)), w3, 64);
