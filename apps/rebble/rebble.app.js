@@ -209,6 +209,9 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       case 2:
         drawSideBar3();
         break;
+      case 3:
+        drawSideBar4();
+        break;
       }
   
       drawCount++;
@@ -300,6 +303,24 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
     }
 
     let drawSideBar4=function() {
+      let currentWeather=weather.get();
+      if(currentWeather) {
+        setTextColor();
+        setSmallFont();
+        g.setFontAlign(0, -1);
+        g.drawImage(chooseIconByCode(currentWeather.dailyforecast[0].wec), w2 + (ws - 49)/2, 0, { scale: 1 });
+        g.drawString(currentWeather.dailyforecast[0].max.toFixed(0) + "|" + currentWeather.dailyforecast[0].min.toFixed(0), w3, 45);
+        g.drawImage(chooseIconByCode(currentWeather.dailyforecast[1].wec), w2 + (ws - 49)/2, 50, { scale: 1 });
+        g.drawString(currentWeather.dailyforecast[1].max.toFixed(0) + "|" + currentWeather.dailyforecast[1].min.toFixed(0), w3, 95);
+      } else {
+        drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
+        setTextColor();
+        g.setFont('Vector', 20);
+        g.setFontAlign(0, -1);
+        g.drawString(currentWeather.dailyforecast[0].wec + '%', w3,  (h/10) + 17 + 7);
+      }
+    }
+    let drawSideBar5=function() {
       // heartbeat info
       /**
    * `range` is one of:
@@ -326,7 +347,7 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
       g.drawString(formatSteps(), w3, 7*h/8);
     }
 
-    let drawSideBar5=function() {
+    let drawSideBar6=function() {
       // hourly weather forecast info next day, 2nd day,
       g.drawString(Math.round(Bangle.getHealthStatus("last").bpm), 109, 98);
   
@@ -404,12 +425,12 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
     }
   
     let nextSidebar=function() {
-      if (++sideBar > 2) sideBar = 0;
+      if (++sideBar > 3) sideBar = 0;
       log_debug("next: " + sideBar);
     }
   
     let prevSidebar=function() {
-      if (--sideBar < 0) sideBar = 2;
+      if (--sideBar < 0) sideBar = 3;
       log_debug("prev: " + sideBar);
     }
   
@@ -444,6 +465,9 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
           break;
         case 2:
           drawSideBar3();
+          break;
+        case 3:
+          drawSideBar4();
           break;
       }
     }
