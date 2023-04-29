@@ -309,9 +309,9 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         setSmallFont();
         g.setFontAlign(0, -1);
         g.drawImage(chooseIconByCode(currentWeather.dailyforecast[0].wec), w2 + (ws - 49)/2, 0, { scale: 1 });
-        g.drawString(currentWeather.dailyforecast[0].max.toFixed(0) + "|" + currentWeather.dailyforecast[0].min.toFixed(0), w3, 45);
+        g.drawString(currentWeather.dailyforecast[0].mat.toFixed(0) + "|" + currentWeather.dailyforecast[0].mit.toFixed(0), w3, 45);
         g.drawImage(chooseIconByCode(currentWeather.dailyforecast[1].wec), w2 + (ws - 49)/2, 50, { scale: 1 });
-        g.drawString(currentWeather.dailyforecast[1].max.toFixed(0) + "|" + currentWeather.dailyforecast[1].min.toFixed(0), w3, 95);
+        g.drawString(currentWeather.dailyforecast[1].mat.toFixed(0) + "|" + currentWeather.dailyforecast[1].mit.toFixed(0), w3, 95);
       } else {
         drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
         setTextColor();
