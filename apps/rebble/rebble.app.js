@@ -308,12 +308,12 @@ Graphics.prototype.setFontKdamThmor = function(scale) {
         setTextColor();
         setSmallFont();
         g.setFontAlign(0, -1);
-        g.drawImage(chooseIconByCode(currentWeather.dailyforecast[0].weatherCode), w2 + (ws - 49)/2, 0, { scale: 1 });
-        g.drawString(currentWeather.dailyforecast[0].maxTemperature.toFixed(0) + "|" + currentWeather.dailyforecast[0].minTemperature.toFixed(0), w3, 45);
-        g.drawImage(chooseIconByCode(currentWeather.dailyforecast[1].weatherCode), w2 + (ws - 49)/2, 60, { scale: 1 });
-        g.drawString(currentWeather.dailyforecast[1].maxTemperature.toFixed(0) + "|" + currentWeather.dailyforecast[1].minTemperature.toFixed(0), w3, 105);
-        g.drawImage(chooseIconByCode(currentWeather.dailyforecast[2].weatherCode), w2 + (ws - 49)/2, 120, { scale: 1 });
-        g.drawString(currentWeather.dailyforecast[2].maxTemperature.toFixed(0) + "|" + currentWeather.dailyforecast[2].minTemperature.toFixed(0), w3, 165);
+        g.drawImage(chooseIconByCode(currentWeather.dailyforecast[0].weatherCode), w2 + (ws - 49)/2, 0, { scale: .75 });
+        g.drawString(currentWeather.dailyforecast[0].maxTemperature.toFixed(0) + "|" + currentWeather.dailyforecast[0].minTemperature.toFixed(0), w3, 40);
+        g.drawImage(chooseIconByCode(currentWeather.dailyforecast[1].weatherCode), w2 + (ws - 49)/2, 60, { scale: .75 });
+        g.drawString(currentWeather.dailyforecast[1].maxTemperature.toFixed(0) + "|" + currentWeather.dailyforecast[1].minTemperature.toFixed(0), w3, 100);
+        g.drawImage(chooseIconByCode(currentWeather.dailyforecast[2].weatherCode), w2 + (ws - 49)/2, 120, { scale: .75 });
+        g.drawString(currentWeather.dailyforecast[2].maxTemperature.toFixed(0) + "|" + currentWeather.dailyforecast[2].minTemperature.toFixed(0), w3, 160);
       } else {
         drawBattery(w2 + (w-w2-wb)/2,  h/10, wb, 17);
         setTextColor();
